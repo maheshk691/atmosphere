@@ -9,6 +9,7 @@ molecule/*/host_vars/*
 !molecule/*/host_vars/.gitkeep
 *.tar.gz
 __pycache__
+tests/.coverage
 tests/output
 *.orig
 *.rej
