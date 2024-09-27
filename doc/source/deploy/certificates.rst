@@ -141,6 +141,22 @@ your ACME server can reach your API, you don't need to do anything else.
 If your ACME server cannot reach your API, you will need to use the ``DNS-01``
 challenges which require you to configure your DNS provider.
 
+Azure DNS
+*********
+
+To configure cert-manager with Azure DNS, create a `Service Principal
+<https://cert-manager.io/docs/configuration/acme/dns01/azuredns/#service-principal>`_ and set the following variables:
+
+.. code-block:: yaml
+
+  cluster_issuer_acme_solver: azuredns
+  cluster_issuer_acme_azuredns_client_id: <CLIENT_ID>
+  cluster_issuer_acme_azuredns_client_secret: <CLIENT_SECRET>
+  cluster_issuer_acme_azuredns_subscription_id: <SUBSCRIPTION_ID>
+  cluster_issuer_acme_azuredns_tenant_id: <TENANT_ID>
+  cluster_issuer_acme_azuredns_resourcegroup_name: <RESOURCEGROUP_NAME>
+  cluster_issuer_acme_azuredns_hostedzone_name: <HOSTEDZONE_NAME>
+
 RFC2136
 *******
 
@@ -176,6 +192,25 @@ following configuration:
    You'll need to make sure that your AWS credentials have the correct
    permissions to update the Route53 zone.
 
+Cloudflare
+**********
+
+If you are using Cloudflare to host the DNS for your domains, you can use the
+following configuration:
+
+.. code-block:: yaml
+
+  cluster_issuer_acme_email: user@example.com
+  cluster_issuer_acme_solver: cloudflare
+  cluster_issuer_acme_cloudflare_api_token: <CLOUDFLARE_API_TOKEN>
+
+If Cloudflare's account name is different from ACME Issuer's email address
+then also set:
+
+.. code-block:: yaml
+
+  cluster_issuer_acme_cloudflare_email: my-cloudflare-acc@example.com
+
 GoDaddy
 *******
 
@@ -189,6 +224,12 @@ configuration which depends on
   cluster_issuer_acme_solver: godaddy
   cluster_issuer_acme_godaddy_api_key: <GODADDY_API_KEY>
   cluster_issuer_acme_godaddy_secret_key: <GODADDY_SECRET_KEY>
+
+.. note::
+
+   GoDaddy DNS API has some limitations. To use it you need:
+    - Accounts with 10 or more domains
+    - Accounts with a Discount Domain Club subscription
 
 Infoblox
 ********
@@ -274,12 +315,13 @@ values, you can use the `cert-manager supported annotations <https://cert-manage
 to configure the certificate values.
 
 In order to apply these annotations to all ingresses managed by Atmosphere, you
-can use the ``ingress_global_annotations`` variable in your inventory which will
-apply the annotations to all ingresses.
+can use the ``atmosphere_ingress_annotations`` variable in your inventory which will
+apply the annotations to all ingresses. ``ingress_global_annotations`` variable is
+deprecated.
 
 .. code-block:: yaml
 
-  ingress_global_annotations:
+  atmosphere_ingress_annotations:
     cert-manager.io/subject-organizations: VEXXHOST, Inc.
     cert-manager.io/subject-organizationalunits: Cloud Infrastructure
     cert-manager.io/subject-localities: Montreal

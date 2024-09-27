@@ -6,7 +6,7 @@ toolchain go1.22.3
 
 require (
 	github.com/cert-manager/cert-manager v1.14.5
-	github.com/containers/image/v5 v5.30.0
+	github.com/containers/image/v5 v5.30.1
 	github.com/erikgeiser/promptkit v0.9.0
 	github.com/goccy/go-yaml v1.11.3
 	github.com/nsf/jsondiff v0.0.0-20230430225905-43f6cf3098c1
@@ -14,7 +14,7 @@ require (
 	github.com/prometheus/client_golang v1.19.0
 	github.com/prometheus/common v0.48.0
 	github.com/sirupsen/logrus v1.9.3
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.9.0
 	github.com/yannh/kubeconform v0.6.4

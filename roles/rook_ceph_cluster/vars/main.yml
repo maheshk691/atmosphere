@@ -17,6 +17,10 @@ _rook_ceph_cluster_spec:
     image: "{{ atmosphere_images['ceph'] | vexxhost.kubernetes.docker_image('ref') }}"
   external:
     enable: true
+  # NOTE(yaguang): As we are using external ceph cluster, so we can safely disable
+  # rook operator monitoring related metrics collection.
+  monitoring:
+    metricsDisabled: true
 
 _rook_ceph_cluster_radosgw_spec:
   preservePoolsOnDelete: true
@@ -42,6 +46,8 @@ _rook_ceph_cluster_radosgw_spec:
 
 _rook_ceph_cluster_helm_values:
   clusterName: "{{ rook_ceph_cluster_name }}"
+  # NOTE(mnaser): We need to disable the token cache until the the backported
+  #               fix https://tracker.ceph.com/issues/64094 is released.
   configOverride: |
     [client]
     rgw keystone api version = 3

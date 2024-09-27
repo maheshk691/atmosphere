@@ -25,6 +25,7 @@ _atmosphere_images:
   cert_manager_cli: quay.io/jetstack/cert-manager-ctl:v1.12.10
   cert_manager_controller: quay.io/jetstack/cert-manager-controller:v1.12.10
   cert_manager_webhook: quay.io/jetstack/cert-manager-webhook:v1.12.10
+  cert_manager_acmesolver: quay.io/jetstack/cert-manager-acmesolver:v1.12.10
   cilium_node: quay.io/cilium/cilium:v1.14.8
   cilium_operator: quay.io/cilium/operator-generic:v1.14.8
   cinder_api: "registry.atmosphere.dev/library/cinder:{{ atmosphere_release }}"
@@ -62,6 +63,7 @@ _atmosphere_images:
   glance_storage_init: "registry.atmosphere.dev/library/glance:{{ atmosphere_release }}"
   grafana_sidecar: quay.io/kiwigrid/k8s-sidecar:1.26.1
   grafana: docker.io/grafana/grafana:11.0.0
+  goldpinger: docker.io/bloomberg/goldpinger:3.10.1
   haproxy: docker.io/library/haproxy:2.5
   heat_api: "registry.atmosphere.dev/library/heat:{{ atmosphere_release }}"
   heat_cfn: "registry.atmosphere.dev/library/heat:{{ atmosphere_release }}"
@@ -86,6 +88,15 @@ _atmosphere_images:
   ingress_nginx_controller: registry.k8s.io/ingress-nginx/controller:v1.10.1
   ingress_nginx_default_backend: registry.k8s.io/defaultbackend-amd64:1.5
   ingress_nginx_kube_webhook_certgen: registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.1
+  ironic_api: "registry.atmosphere.dev/library/ironic:{{ atmosphere_release }}"
+  ironic_conductor: "registry.atmosphere.dev/library/ironic:{{ atmosphere_release }}"
+  ironic_db_sync: "registry.atmosphere.dev/library/ironic:{{ atmosphere_release }}"
+  ironic_manage_cleaning_network: "registry.atmosphere.dev/library/heat:{{ atmosphere_release }}"
+  ironic_pxe_http: docker.io/library/nginx:1.25
+  ironic_pxe_init: "registry.atmosphere.dev/library/ironic:{{ atmosphere_release }}"
+  ironic_pxe: "registry.atmosphere.dev/library/ironic:{{ atmosphere_release }}"
+  ironic_retrive_cleaning_network: "registry.atmosphere.dev/library/heat:{{ atmosphere_release }}"
+  ironic_retrive_swift_config: "registry.atmosphere.dev/library/heat:{{ atmosphere_release }}"
   keepalived: "registry.atmosphere.dev/library/keepalived:{{ atmosphere_release }}"
   keycloak: quay.io/keycloak/keycloak:24.0.5-0
   keystone_api: "registry.atmosphere.dev/library/keystone:{{ atmosphere_release }}"
@@ -106,10 +117,11 @@ _atmosphere_images:
   kube_proxy: registry.k8s.io/kube-proxy:v1.22.17
   kube_scheduler: registry.k8s.io/kube-scheduler:v1.22.17
   kube_state_metrics: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.12.0
+  kube_vip: ghcr.io/kube-vip/kube-vip:v0.6.4
   kubectl: docker.io/bitnami/kubectl:1.27.3
   libvirt: "registry.atmosphere.dev/library/libvirtd:{{ atmosphere_release }}"
   libvirt_tls_sidecar: "registry.atmosphere.dev/library/libvirt-tls-sidecar:{{ atmosphere_release }}"
-  libvirt_exporter: docker.io/vexxhost/libvirtd-exporter:latest
+  libvirt_exporter: registry.atmosphere.dev/library/libvirtd-exporter:latest
   local_path_provisioner_helper: docker.io/library/busybox:1.36.0
   local_path_provisioner: docker.io/rancher/local-path-provisioner:v0.0.24
   loki_gateway: docker.io/nginxinc/nginx-unprivileged:1.24-alpine
@@ -173,6 +185,7 @@ _atmosphere_images:
   openvswitch_db_server: "registry.atmosphere.dev/library/openvswitch:{{ atmosphere_release }}"
   openvswitch_vswitchd: "registry.atmosphere.dev/library/openvswitch:{{ atmosphere_release }}"
   ovn_controller: "registry.atmosphere.dev/library/ovn-host:{{ atmosphere_release }}"
+  ovn_logging_parser: "registry.atmosphere.dev/library/neutron:{{ atmosphere_release }}"
   ovn_northd: "registry.atmosphere.dev/library/ovn-central:{{ atmosphere_release }}"
   ovn_ovsdb_nb: "registry.atmosphere.dev/library/ovn-central:{{ atmosphere_release }}"
   ovn_ovsdb_sb: "registry.atmosphere.dev/library/ovn-central:{{ atmosphere_release }}"
@@ -183,6 +196,7 @@ _atmosphere_images:
   percona_version_service: docker.io/perconalab/version-service:production-2048c1f
   placement_db_sync: "registry.atmosphere.dev/library/placement:{{ atmosphere_release }}"
   placement: "registry.atmosphere.dev/library/placement:{{ atmosphere_release }}"
+  pod_tls_sidecar: registry.atmosphere.dev/library/pod-tls-sidecar:latest
   prometheus_config_reloader: quay.io/prometheus-operator/prometheus-config-reloader:v0.73.0
   prometheus_ipmi_exporter: us-docker.pkg.dev/vexxhost-infra/openstack/ipmi-exporter:1.4.0
   prometheus_memcached_exporter: quay.io/prometheus/memcached-exporter:v0.14.3

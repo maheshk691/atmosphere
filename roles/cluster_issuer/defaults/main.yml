@@ -27,7 +27,7 @@ cluster_issuer_acme_http01_ingress_class: "{{ atmosphere_ingress_class_name }}"
 
 cluster_issuer_acme_cloudflare_secret_name: cloudflare-api-token
 cluster_issuer_acme_cloudflare_email: "{{ cluster_issuer_acme_email }}"
-#cluster_issuer_acme_cloudflare_api_token: <CLOUDFLARE_API_TOKEN>
+# cluster_issuer_acme_cloudflare_api_token: <CLOUDFLARE_API_TOKEN>
 
 cluster_issuer_venafi_secret_name: cert-manager-venafi-credentials
 # cluster_issuer_venafi_ca:
@@ -98,3 +98,12 @@ cluster_issuer_ca_secret_name: cert-manager-issuer-ca
 
 cluster_issuer_self_signed_certificate_name: self-signed-ca
 cluster_issuer_self_signed_secret_name: cert-manager-selfsigned-ca
+
+cluster_issuer_acme_azuredns_secret_name: cert-manager-issuer-azuredns-credentials
+cluster_issuer_acme_azuredns_environment: AzurePublicCloud
+# cluster_issuer_acme_azuredns_client_id:
+# cluster_issuer_acme_azuredns_client_secret:
+# cluster_issuer_acme_azuredns_subscription_id:
+# cluster_issuer_acme_azuredns_tenant_id:
+# cluster_issuer_acme_azuredns_resourcegroup_name:
+# cluster_issuer_acme_azuredns_hostedzone_name:

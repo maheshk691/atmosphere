@@ -17,6 +17,7 @@ manila_helm_chart_path: "../../charts/manila/"
 manila_helm_chart_ref: /usr/local/src/manila
 
 manila_helm_release_namespace: openstack
+manila_helm_kubeconfig: "{{ kubeconfig_path | default('/etc/kubernetes/admin.conf') }}"
 manila_helm_values: {}
 
 # List of annotations to apply to the Ingress
@@ -31,7 +32,7 @@ manila_flavor_extra_specs: {}
 
 # Service instance image
 manila_image_name: manila-service-image
-manila_image_url: "https://object-storage.public.mtl1.vexxhost.net/swift/v1/b98c5fdfb9be4e39a34b93d0b425ac2b/atmosphere-images/manila-{{ atmosphere_version }}.qcow2" # noqa yaml[line-length]
+manila_image_url: "https://object-storage.public.mtl1.vexxhost.net/swift/v1/b98c5fdfb9be4e39a34b93d0b425ac2b/atmosphere-images/manila-{{ atmosphere_version | regex_replace('-(beta|alpha).','.dev') }}.qcow2" # noqa yaml[line-length]
 manila_image_container_format: bare
 manila_image_disk_format: qcow2
 

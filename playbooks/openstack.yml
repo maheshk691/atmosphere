@@ -66,7 +66,6 @@
 - name: Configure operating system
   hosts: controllers:computes
   become: true
-  gather_facts: false
   roles:
     - role: lpfc
       tags:
@@ -75,6 +74,10 @@
     - role: multipathd
       tags:
         - multipathd
+
+    - role: iscsi
+      tags:
+        - iscsi
 
 - name: Deploy Open vSwitch
   hosts: controllers:computes
@@ -107,10 +110,6 @@
     - role: neutron
       tags:
         - neutron
-
-    - role: senlin
-      tags:
-        - senlin
 
     # NOTE(mnaser): This is disabled out of the box until we have a native way
     #               of configuring it with a pre-configured backend out of the

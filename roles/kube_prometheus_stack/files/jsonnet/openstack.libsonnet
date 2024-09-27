@@ -39,6 +39,25 @@
         ],
       },
       {
+        name: 'goldpinger',
+        rules: [
+          {
+            alert: 'GoldpingerNodesUnhealthy',
+            expr: |||
+              sum(goldpinger_nodes_health_total{status="unhealthy"}) BY (instance, goldpinger_instance) > 0
+            |||,
+            'for': '1m',
+            labels: {
+              severity: 'P2',
+            },
+            annotations: {
+              summary: 'Instance {{ $labels.instance }} down',
+              description: 'Goldpinger instance {{ $labels.goldpinger_instance }} has been reporting unhealthy nodes for at least 5 minutes.',
+            },
+          },
+        ],
+      },
+      {
         name: 'cinder',
         rules: [
           {
@@ -259,7 +278,7 @@
               description: 'The cloud capacity is currently at `{{ $value }}` which means there is a risk of running out of capacity due to the timeline required to add new nodes. Please ensure that adequate amount of infrastructure is assigned to this deployment to prevent this.',
               summary: '[nova] Capacity risk',
             },
-            expr: 'sum (     openstack_nova_memory_used_bytes   + on(hostname) group_left(adminState)     (0 * openstack_nova_agent_state{exported_service="nova-compute",adminState="enabled"}) ) / sum (     openstack_nova_memory_available_bytes   + on(hostname) group_left(adminState)     (0 * openstack_nova_agent_state{exported_service="nova-compute",adminState="enabled"}) ) * 100 > 75',
+            expr: 'sum (     openstack_nova_memory_used_bytes   + on(hostname) group_left(adminState)     (0 * openstack_nova_agent_state{exported_service="nova-compute",adminState="enabled"}) ) / sum (     openstack_nova_memory_available_bytes*0.90   + on(hostname) group_left(adminState)     (0 * openstack_nova_agent_state{exported_service="nova-compute",adminState="enabled"}) ) * 100 > 75',
             'for': '6h',
             labels: {
               severity: 'warning',

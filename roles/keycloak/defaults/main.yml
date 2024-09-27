@@ -17,11 +17,13 @@ keycloak_helm_chart_path: "../../charts/keycloak/"
 keycloak_helm_chart_ref: /usr/local/src/keycloak
 
 keycloak_helm_release_namespace: auth-system
+keycloak_helm_kubeconfig: "{{ kubeconfig_path | default('/etc/kubernetes/admin.conf') }}"
 keycloak_helm_values: {}
 
 keycloak_host: "{{ undef('You must specify a Keycloak host using keycloak_host') }}"
 keycloak_ingress_annotations: {}
 keycloak_ingress_class_name: "{{ atmosphere_ingress_class_name }}"
+keycloak_ingress_cluster_issuer: "{{ atmosphere_ingress_cluster_issuer }}"
 
 keycloak_admin_username: admin
 keycloak_admin_password: "{{ undef(hint='You must specify a Keycloak admin password using keycloak_admin_password') }}"
